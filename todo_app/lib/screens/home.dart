@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: const BoxDecoration(
                 color: Colors.purple,
                 image: DecorationImage(
-                    image: AssetImage("lib/assets/images/header.png"),
+                    image: AssetImage("lib/assets/images/Header2.png"),
                     fit: BoxFit.cover),
               ),
               child: const Column(
