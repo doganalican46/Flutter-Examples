@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/constants/color.dart';
 import 'package:todo_app/constants/tasktype.dart';
-import 'package:todo_app/main.dart';
 import 'package:todo_app/model/task.dart';
 import 'package:todo_app/screens/add_new_task.dart';
 import 'package:todo_app/todoitem.dart';
@@ -50,6 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
           description: "Go to the shower",
           isCompleted: false),
     ];
+
+    void addNewTask(Task newTask) {
+      setState(() {
+        todo.add(newTask);
+      });
+    }
+
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
@@ -136,7 +142,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AddNewTaskScreen(),
+                    builder: (context) => AddNewTaskScreen(
+                      addNewTask: (newTask) => addNewTask(newTask),
+                    ),
                   ));
                 },
                 child: const Text("Add new Task")),
