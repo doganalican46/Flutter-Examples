@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/constants/color.dart';
+import 'package:todo_app/constants/tasktype.dart';
 import 'package:todo_app/main.dart';
+import 'package:todo_app/model/task.dart';
 import 'package:todo_app/screens/add_new_task.dart';
 import 'package:todo_app/todoitem.dart';
 
@@ -15,8 +17,39 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    List<String> todo = ["Study Lessons", "Run SK", "Go to Party"];
-    List<String> completed = ["Fame meet", "Hang out with Arzu"];
+    // List<String> todo = ["Study Lessons", "Run SK", "Go to Party"];
+    // List<String> completed = ["Fame meet", "Hang out with Arzu"];
+
+    List<Task> todo = [
+      Task(
+          type: TaskType.note,
+          title: "Study Lessons",
+          description: "Study COMP117",
+          isCompleted: false),
+      Task(
+          type: TaskType.context,
+          title: "Run SK",
+          description: "Run 5 km",
+          isCompleted: false),
+      Task(
+          type: TaskType.calendar,
+          title: "Party Time",
+          description: "Go to Party",
+          isCompleted: false),
+    ];
+
+    List<Task> completed = [
+      Task(
+          type: TaskType.context,
+          title: "Watch TV",
+          description: "watch Galatasaray Match",
+          isCompleted: false),
+      Task(
+          type: TaskType.calendar,
+          title: "have a shower",
+          description: "Go to the shower",
+          isCompleted: false),
+    ];
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
@@ -68,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         primary: false,
                         itemCount: todo.length,
                         itemBuilder: (context, index) {
-                          return TodoItem(title: todo[index]);
+                          return TodoItem(task: todo[index]);
                         })),
               ),
             ),
@@ -95,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         primary: false,
                         itemCount: completed.length,
                         itemBuilder: (context, index) {
-                          return TodoItem(title: completed[index]);
+                          return TodoItem(task: completed[index]);
                         })),
               ),
             ),
